@@ -44,8 +44,7 @@
 .navbar #addBlog:hover,
 .navbar #login:hover {
     transform: scale(1.1);
-    background-color: rgba(63, 0, 10, 0.849);
-    
+    background-color: rgba(63, 0, 10, 0.849);   
 }
 /* routs pages style */
 .container{
@@ -161,3 +160,46 @@
     padding-bottom: 7px;
 }
 /* dymic blog page */
+.dynamicContainer{
+    height: 70vh;
+    width: 70vw;
+    border: 2px solid gray;
+    margin: auto;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: 3em;
+    border-radius: 15px;
+    position: relative;
+}
+.dynamicContainer hr{
+    background-color:gray;
+    height: 3px;
+}
+.dynamicContainer #goHome{
+    position: absolute;
+    bottom: 30px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border: 1px solid gray;
+    padding:5px 1em;
+    border-radius: 20px;
+    background-color: rgba(63, 0, 10, 0.849);
+    transition: .5s;
+}
+.dynamicContainer #goHome:hover{
+    transform: scale(1.1);
+    color: rgba(63, 0, 10, 0.849);
+    background-color: rgba(255, 255, 255, 0.726);
+    font-weight: 800;
+    border: 2px solid rgba(63, 0, 10, 0.849);
+}
+.dynamicContainer #dynamicHeading{
+    text-transform: capitalize;
+
+}
+.dynamicContainer #dynamicBlog{
+    text-transform: capitalize;
+}

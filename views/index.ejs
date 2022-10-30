@@ -1,10 +1,6 @@
 <%- include('partials/header'); -%>
 <div class="container">
-  <!-- <div class="homeContainer">
-    <h1>Welcome To Developer Blog's</h1>
-  </div> -->
-
-  <% blogArray.forEach(element=> {%>
+  <% Array.from(blogArray).forEach(element=> {%>
   <div class="blogcontainer">
     <div class="title">
       <%=element.title%>

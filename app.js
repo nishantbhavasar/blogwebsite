@@ -2,7 +2,8 @@
 const express = require("express");
 const ejs = require("ejs");
 const { v4: uuid } = require("uuid");
-
+const database = require("./dbconnection/dbconnection");
+database.databaseConnection();
 //app and midelware setting
 const app = express();
 app.set("view engine", "ejs");
@@ -18,10 +19,13 @@ app.use(express.urlencoded({ extended: true }));
   currenttime: '30/10/2022'
 }
 */
+
 const blogArray = [];
 
 //home page || blog show page
 app.get("/", (req, res) => {
+  // setTimeout(() => {}, 100);
+  let blogArray = database.getDataFromDatabase();
   res.render("index", {
     blogArray,
   });
@@ -58,16 +62,25 @@ app.get("/compose", (req, res) => {
 });
 
 //Add blog page
-app.post("/compose", (req, res) => {
+app.post("/compose", async (req, res) => {
   if (req.body.title == "" || req.body.contant == "") {
     res.redirect("/error");
   }
+
   let date = new Date();
   let toDayDate = date.toLocaleDateString();
   let newBlogId = uuid();
   req.body.blogId = newBlogId;
   req.body.currenttime = toDayDate;
-  blogArray.push(req.body);
+
+  await database.storeDataToDatabase(
+    newBlogId,
+    req.body.title,
+    req.body.contant,
+    toDayDate
+  );
+  // blogArray.push(req.body);
+
   res.redirect("/");
 });
 
@@ -76,7 +89,32 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+// dyanamic page create
+app.get("/:dynamic", (req, res) => {
+  blogArray.forEach((element) => {
+    if (element.blogId == req.params.dynamic) {
+      res.render("dynamic", {
+        element,
+      });
+    }
+  });
+});
+
 //server listening page
 app.listen(3000, () => {
   console.log("your server running on port 3000");
+  blogArray.forEach((element) => {});
 });
+
+//git add .
+//git commit "message"
+//git push -u origin master
+
+// create table blog(
+//   blogid varchar(255) primary Key,
+//   title varchar(255),
+//   contant text,
+//   cuurenttime date
+// );
+
+// insert into blog values ('7530d364-8a62-4145-a183-2e26b7486dd8','hello','adsgfasfdgasdfasdf','30/10/2022');
