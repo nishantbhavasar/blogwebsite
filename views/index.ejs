@@ -1,0 +1,20 @@
+<%- include('partials/header'); -%>
+<div class="container">
+  <!-- <div class="homeContainer">
+    <h1>Welcome To Developer Blog's</h1>
+  </div> -->
+
+  <% blogArray.forEach(element=> {%>
+  <div class="blogcontainer">
+    <div class="title">
+      <%=element.title%>
+      <span><%=element.currenttime%> </span>
+    </div>
+    <div class="content">
+      <%=element.contant%>
+      <a href="/<%=element.blogId%>">Read More...</a>
+    </div>
+  </div>
+  <%}); %>
+</div>
+<%- include('partials/footer'); -%>

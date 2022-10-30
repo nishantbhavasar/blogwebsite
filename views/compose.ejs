@@ -1,0 +1,14 @@
+<%- include('partials/header')%>
+<form class="compose" action="/compose" method="post">
+  Title : <input type="text" name="title" id="title" />
+  Blog :
+  <textarea
+    name="contant"
+    id="contant"
+    placeholder="Write Message..."
+  ></textarea>
+  <input type="submit" value="Submit" id="submitBtn" />
+</form>
+<script src="js/index.js"></script>
+
+<%- include('partials/footer') -%>

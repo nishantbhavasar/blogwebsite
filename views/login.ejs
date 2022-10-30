@@ -1,0 +1,29 @@
+<%- include('partials/header'); -%>
+
+<div class="loginForm">
+  <form id="login" action="/">
+    First Name :
+    <input
+      type="text"
+      placeholder="First Name"
+      name="firstName"
+      id="firstName"
+    />
+    <br />
+    Last Name :
+    <input
+      type="text"
+      name="lastName"
+      placeholder="Last Name"
+      id="lastName"
+    /><br />
+    Email : <input type="email" placeholder="Email" name="email" id="email" />
+
+    <div class="btnContainer">
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer'); -%>
