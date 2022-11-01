@@ -1,8 +1,15 @@
 <%- include('partials/header'); -%>
+<% //console.log(data[0])%>
+
 <div class="dynamicContainer">
-  <h1 id="dynamicHeading"><%= element.title %></h1>
-  <hr />
-  <p id="dynamicBlog"><%= element.contant%></p>
-  <a id="goHome" href="/">Home</a>
+    <h1 id="dynamicHeading">
+        <%= data[0].title %>
+    </h1>
+    <hr>
+    <p id="dynamicBlog">
+        <%= data[0].contant %>
+    </p>
+    <a href="/" id="goHome">See All</a>
 </div>
-<%- include('partials/footer')%>
+
+<%- include('partials/footer'); -%>

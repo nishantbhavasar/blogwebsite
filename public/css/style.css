@@ -111,6 +111,20 @@
     text-decoration: none;
     margin-left: 2pc;
 }
+#Up{
+    background-color: rgba(63, 0, 10, 0.849);
+    padding: 8px 1em;
+    border: 1px solid gray;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    color: white;
+    z-index: 999;
+}
 
 /* login page form */
 .loginForm{
@@ -120,13 +134,14 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    margin-top: 5em;
-    
+    margin-top: 3em;
+
 }
 .loginForm #login{
     padding: 2em;
     display: flex;
-    border: 2px solid red;
+    border: 1px solid gray;
+    border-radius: 15px;
     flex-direction: column;
     gap: 5px;
     position: relative;
@@ -158,6 +173,14 @@
     border-radius:20px ;
     text-align: center;
     padding-bottom: 7px;
+}
+
+.loginForm #login .btnContainer input[type='submit']:hover ,
+.loginForm #login .btnContainer input[type='reset']:hover{
+    background-color: rgba(63, 0, 10, 0.849);
+    color: white;
+    transition: .5s;
+    transform: scale(1.08);
 }
 /* dymic blog page */
 .dynamicContainer{

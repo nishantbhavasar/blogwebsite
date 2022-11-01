@@ -14,18 +14,39 @@ function databaseConnection() {
 }
 
 async function getDataFromDatabase() {
-  await connection.query("select * from blog", (err, result) => {
-    return result;
-  });
+  return await new Promise((resolve, reject) => {
+    connection.query('select * from blog ', (err, result, field) => {
+      if (err) {
+        reject();
+      }
+      else {
+        resolve(result);
+      }
+    })
+  })
 }
 getDataFromDatabase();
-function storeDataToDatabase(blogId, title, contant, date) {
-  let query = `insert into blog (blogid,title,contant,curenttime) values ('${blogId}','${title}','${contant}','${date}');`;
+function storeDataToDatabase(title, contant) {
+  let query = `insert into blog (blogid,title,contant,curenttime) values (uuid(),'${title}','${contant}',CURDATE());`;
   connection.query(query, (err, result) => {});
+}
+
+async function getBlog(blogid) {
+  return await new Promise((resolve, reject) => {
+    connection.query('select * from blog where blogid = ?',[blogid], (err, result, field) => {
+      if (err) {
+        reject();
+      }
+      else {
+        resolve(result);
+      }
+    })
+  })
 }
 
 module.exports = {
   databaseConnection,
   getDataFromDatabase,
   storeDataToDatabase,
+  getBlog,
 };

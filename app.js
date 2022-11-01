@@ -10,6 +10,14 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
+
+//server listening page
+app.listen(3000, () => {
+  console.log("your server running on port 3000");
+  
+});
+
+
 //Array of all blogs
 /*
 {
@@ -23,9 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 const blogArray = [];
 
 //home page || blog show page
-app.get("/", (req, res) => {
-  // setTimeout(() => {}, 100);
-  let blogArray = database.getDataFromDatabase();
+app.get("/", async (req, res) => {
+  let blogArray = await database.getDataFromDatabase();
   res.render("index", {
     blogArray,
   });
@@ -66,21 +73,10 @@ app.post("/compose", async (req, res) => {
   if (req.body.title == "" || req.body.contant == "") {
     res.redirect("/error");
   }
-
-  let date = new Date();
-  let toDayDate = date.toLocaleDateString();
-  let newBlogId = uuid();
-  req.body.blogId = newBlogId;
-  req.body.currenttime = toDayDate;
-
   await database.storeDataToDatabase(
-    newBlogId,
     req.body.title,
-    req.body.contant,
-    toDayDate
+    req.body.contant
   );
-  // blogArray.push(req.body);
-
   res.redirect("/");
 });
 
@@ -90,21 +86,18 @@ app.get("/login", (req, res) => {
 });
 
 // dyanamic page create
-app.get("/:dynamic", (req, res) => {
-  blogArray.forEach((element) => {
-    if (element.blogId == req.params.dynamic) {
-      res.render("dynamic", {
-        element,
-      });
-    }
-  });
-});
+// app.get("/:dynamic", async (req, res) => {
+//   console.log('')
+//   let data = await database.getBlog(req.params.dynamic);
+//   console.log(data + ' from app ');
+//   res.render('dynamic', {data});
+// });
 
-//server listening page
-app.listen(3000, () => {
-  console.log("your server running on port 3000");
-  blogArray.forEach((element) => {});
-});
+app.get('/blogs/:dynamic', async (req, res) => {
+  let data = await database.getBlog(req.params.dynamic);
+
+  res.render('dynamic',{data});
+})
 
 //git add .
 //git commit "message"

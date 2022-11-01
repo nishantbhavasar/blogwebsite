@@ -1,16 +1,19 @@
 <%- include('partials/header'); -%>
 <div class="container">
-  <% Array.from(blogArray).forEach(element=> {%>
+<% //console.log(blogArray)%>
+     <% Array.from(blogArray).forEach(element=> {%>
   <div class="blogcontainer">
     <div class="title">
       <%=element.title%>
-      <span><%=element.currenttime%> </span>
+      <span><%=element.curenttime%> </span>
     </div>
     <div class="content">
-      <%=element.contant%>
-      <a href="/<%=element.blogId%>">Read More...</a>
+      <%=element.contant.substring(0,100) + " ..."%>
+      <a href="/blogs/<%=element.blogid%>">Read More...</a>
     </div>
   </div>
-  <%}); %>
+  <%}); %> 
+
 </div>
+<a href="/" id="Up">Top</a>
 <%- include('partials/footer'); -%>
